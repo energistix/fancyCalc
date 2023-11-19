@@ -9,11 +9,11 @@ textArea.addEventListener("input", (ev) => {
   const values: Record<string, string> = {}
   const results = lines.map((line) => {
     let name = ""
-    const match = line.match(/^(\w+)\s*=/)
+    const match = line.match(/^(.+?)\s*=/)
 
     if (match) {
       name = match[1]
-      line.replace(/^(\w+)\s*=\s*/, "")
+      line = line.replace(/^(.+?)\s*=\s*/, "")
     }
 
     for (const [name, value] of Object.entries(values)) {
