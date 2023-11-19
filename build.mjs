@@ -17,6 +17,7 @@ const frontContext = await esbuild.context({
   outdir: "public",
   platform: "browser",
   ...(dev ? {} : { drop: ["console", "debugger"] }),
+  bundle: true,
 })
 
 nodeContext.rebuild()
