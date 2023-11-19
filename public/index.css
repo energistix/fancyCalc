@@ -6,7 +6,7 @@ textarea {
   font-family: sans-serif;
   padding: 0;
   border-width: 1;
-  width: min(80vh, 800px);
+  width: min(80vw, 800px);
   height: 95%;
   /* make it so they can layer on top of eachother */
   position: absolute;
