@@ -44955,7 +44955,7 @@
         line = line.replace(/^(.+?)\s*=\s*/, "");
       }
       for (const [name311, value] of Object.entries(values)) {
-        line = line.replaceAll(name311, value);
+        line = line.replace(new RegExp(`\\b${name311}\\b`, "g"), value);
       }
       try {
         const result = evaluate(line);

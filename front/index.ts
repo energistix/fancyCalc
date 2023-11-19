@@ -17,7 +17,7 @@ textArea.addEventListener("input", (ev) => {
     }
 
     for (const [name, value] of Object.entries(values)) {
-      line = line.replaceAll(name, value)
+      line = line.replace(new RegExp(`\\b${name}\\b`, "g"), value)
     }
 
     try {
