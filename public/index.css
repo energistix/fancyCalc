@@ -1,35 +1,24 @@
-div,
-textarea {
-  background: transparent;
-  font-size: 1em;
-  line-height: 1em;
-  font-family: sans-serif;
-  padding: 0;
-  border-width: 1;
-  width: min(80vw, 800px);
-  height: 95%;
-  /* make it so they can layer on top of eachother */
-  position: absolute;
-  font-size: 2em;
-  /* give some space on the left of the textarea */
-  padding-left: 5px;
-  padding-right: 5px;
+* {
   font-family: Consolas;
-  text-wrap: nowrap;
-  overflow: hidden;
+  font-size: 1em;
 }
 
 body {
-  margin: 0;
-  /* center everything */
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  width: 100vw;
+  flex-direction: row;
+  margin: 0;
 }
 
-div {
-  /* put the text on the left of the div */
-  text-align: right;
+#editor > * {
+  position: absolute;
+  width: inherit;
+  padding: 0;
+  border: 0;
+  padding-left: 5px;
+  overflow-y: visible;
+}
+
+#lines,
+textarea {
+  height: 100vh;
 }

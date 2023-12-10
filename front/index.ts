@@ -1,34 +1,33 @@
-import { evaluate } from "mathjs"
+const editor = document.getElementById("input") as HTMLTextAreaElement
+const overlay = document.getElementById("overlay")
+const lines = document.getElementById("lines")
 
-const textArea = document.getElementsByTagName("textarea").item(0)
-const overlay = document.getElementsByTagName("div").item(0)
+const editorEdit = () => {
+  const text = editor.value
+  const textLines = text.split("\n")
+  let linesString = ""
 
-textArea.addEventListener("input", (ev) => {
-  // execute each line and put the result on the overlay
-  const lines = textArea.value.split("\n")
-  const values: Record<string, string> = {}
-  const results = lines.map((line) => {
-    let name = ""
-    const match = line.match(/^(.+?)\s*=/)
+  for (const lineIndex in textLines) {
+    linesString += `${Number(lineIndex) + 1}<br>`
+  }
 
-    if (match) {
-      name = match[1]
-      line = line.replace(/^(.+?)\s*=\s*/, "")
-    }
+  lines.innerHTML = linesString
+  lines.style.width = `${
+    Math.max(Math.ceil(Math.log10(textLines.length + 1)), 1) * 10
+  }px`
 
-    for (const [name, value] of Object.entries(values)) {
-      line = line.replace(new RegExp(`\\b${name}\\b`, "g"), value)
-    }
+  editor.style.width = `calc(100vw - ${lines.style.width} - 5px)`
+  overlay.style.width = `calc(100vw - ${lines.style.width} - 5px)`
 
-    try {
-      const result = evaluate(line)
-      if (name !== "") {
-        values[name] = result
-      }
-      return result
-    } catch (e) {
-      return e
-    }
-  })
-  overlay.innerHTML = results.join("<br>")
-})
+  editor.style.height = `${Math.min(
+    editor.scrollHeight,
+    textLines.length * 20
+  )}px`
+  overlay.style.height = `${Math.min(
+    editor.scrollHeight,
+    textLines.length * 20
+  )}px`
+}
+
+editor.addEventListener("input", editorEdit)
+editorEdit()

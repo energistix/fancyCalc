@@ -30,6 +30,7 @@ if (dev) {
 } else {
   console.log("Done.")
   nodeContext.dispose()
+  frontContext.dispose()
 }
 async function watchFront() {
   const watcherFront = fs.watch("front", { recursive: true })
